@@ -1,9 +1,16 @@
 const postContainer =document.getElementById('post-container');
 const loading = document.querySelector('.loader');
 const filter = document.getElementById('filter');
+let limitInput = document.getElementById("limitBox");
 
-let limit=5;
+
+let limit=3;
 let page=1;
+
+//show initial posts
+    showPosts();
+
+
 
 //fetch posts from api
 
@@ -47,8 +54,17 @@ function showLoading(){
     },1000)
 }
 
-//show initial posta
-    showPosts();
+
+//limit posts
+
+function limitPosts(){    
+    if (limitInput.value.trim() != "") {
+        postContainer.innerHTML="";
+      limit = parseInt(limitInput.value);
+      showPosts();
+    }
+ 
+}
 //filter Posts
 
 function filterPosts(e){
@@ -70,13 +86,17 @@ function filterPosts(e){
 window.addEventListener('scroll',()=>{
 
     const {scrollTop,scrollHeight,clientHeight}=document.documentElement;
+    if (limitInput.value.trim() == "") {
 
     if(scrollTop+clientHeight>=scrollHeight-5){
         showLoading();
     }
+}
 })
 
 filter.addEventListener('input',filterPosts);
+limitInput.addEventListener('input', limitPosts);
+
 
 // clientHeight-The clientHeight property returns the viewable height of an element in pixels,
 // including padding, but not the border, scrollbar or margin.
@@ -84,4 +104,3 @@ filter.addEventListener('input',filterPosts);
 //scrolltop -The scrollTop property sets or returns the number of pixels an element's content is scrolled vertically.
 
 //scrollHeight - The scrollHeight property returns the entire height of an element in pixels, including padding, but not the border, scrollbar or margin.
-

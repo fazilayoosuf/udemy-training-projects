@@ -23,9 +23,23 @@ h1{
     max-width: 800px;
 }
 .filter{
-    width:100%;
+    width:60%;
     padding:10px;
 }
+#limit {
+    margin-top: -38px;
+    margin-left: 500px;
+  }
+  
+  #limitBox {
+    width: 40%;
+    height: 40px;
+    margin-top: -2px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+  }
+
 .post{
     position: relative;
     background-color: #4992d3;
